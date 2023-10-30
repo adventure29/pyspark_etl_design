@@ -21,4 +21,14 @@
   step 2: Definingall the home variables follwed by installation of environment
   step 3: run all the scripts which we mentioned
   step 4: clear all the cache related to execution
-   
+
+5. Insights of adverse events data - manufacturer with serious results
+one of the example of serious results manufacturer details:
+##Returns the data of manufacturer which are having seriious adverse event results
+col = df.columns
+manufacture_column_list=[]
+for manufacture_related_columns in col:
+  if('manufacture' in manufacture_related_columns):
+    manufacture_column_list.append(manufacture_related_columns)
+df1=df.filter("results_serious >=1").select('results_patient_drug_openfda_manufacturer_name').distinct()
+df1.show()
