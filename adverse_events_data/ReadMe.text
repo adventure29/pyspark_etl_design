@@ -1,0 +1,10 @@
+First Run - Prerequisites.txt 
+Main Script: main.py
+Child Script: source.py
+MakeFile Script: MakeFile
+
+Extract - read the url file using url lib libraries and store to dataframe
+Transformation - using explode and ifinstance functions storing the column names and values into one dataframe
+Load - using write.options create csv file with overwrite option
+
+
