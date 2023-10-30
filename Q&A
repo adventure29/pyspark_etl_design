@@ -9,7 +9,16 @@
 3. How would you create a Spark table and store the extracted data in an open-source platform? 
  --Platform usesd - goole colab studio
  Method 1: using saveAsTable option we can create a spark table
-  step1: spark.sql("CREATE DATABASE IF NOT EXISTS sparkExamples")
+  step 1: spark.sql("CREATE DATABASE IF NOT EXISTS sparkExamples")
   step 2: df.write.mode("overwrite").saveAsTable("sparkExamples.spark_table")
  Method 2: We can use create temporary view or global temporary view using dataframe data
   step 1: df.createOrReplaceGlobalTempView("table_name") or df.createOrReplaceTempView("table_name")
+4. How would you use Makefile to manage the ETL process and dependencies? 
+  MakeFile contains set of rules or command which needs to be executed to perform some extraction  or transformation in view of ETL. 
+  It will just install, compile and recompile the sets of programs which we defined in MakeFile
+  ETL process is nothing but the set of code which is written in python with spark(pyspark, .py extension file)
+   step 1: Creating all the prerequisites modules and libraries to be installed in text file(prerequisites.txt)
+  step 2: Definingall the home variables follwed by installation of environment
+  step 3: run all the scripts which we mentioned
+  step 4: clear all the cache related to execution
+   
