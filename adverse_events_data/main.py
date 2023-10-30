@@ -33,26 +33,19 @@ def read_json_nested(df):
 def main():
 	spark = SparkSession.builder.appName("Get Adverse Events data").getOrCreate() 
 	read_nested_json_flag = True
-  ##While Loop Starts
 	while read_nested_json_flag:
-  	sourceURL = input("Provide the adverse event Source URL: ")
-  	source.source_dataframe(sourceURL)
-  	print("Reading Nested JSON File ... ")
-  	df = read_json_nested(df)
-  	read_nested_json_flag = False
-  	for column_name in df.schema.names:
-    	if isinstance(df.schema[column_name].dataType, ArrayType):
-      	read_nested_json_flag = True
-    elif isinstance(df.schema[column_name].dataType, StructType):
-      read_nested_json_flag = True
- 
-def main():
-    # pull data from Reddit
-    data = extract()
-    # transform reddit data
-    transformed_data = transform(data)
-    # load data into database
-    load(transformed_data)
+		sourceURL = input("Provide the adverse event Source URL: ")
+		source.source_dataframe(sourceURL)
+		print("Reading Nested JSON File ... ")
+		df = read_json_nested(df)
+		read_nested_json_flag = False
+		for column_name in df.schema.names:
+				if isinstance(df.schema[column_name].dataType, ArrayType):
+						read_nested_json_flag = True
+				elif isinstance(df.schema[column_name].dataType, StructType):
+						read_nested_json_flag = True
+	#Step 4: creating the csv file based on the source data ( open api json)
+df.coalesce(5).write.format("csv").mode("overwrite").save("/content/drive/MyDrive/Adverse_Events_Data/nonsteroidal_parquet_final")
     
 if __name__ == '__main__':
     main()
