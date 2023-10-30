@@ -1,0 +1,15 @@
+1. How would you efficiently extract the fields related to adverse events using PySpark from the datasets available at the provided link? 
+  -- need to create dataframe instead of rdd and load the data available in the link provided 
+  -- And also need to use functions such as select, filter, group by , order by, partitionBy in dataframe we created to extract the required data
+  -- And partition plays a bigger role in executing data transformations in parallel across various nodes in clusters, we use coalesce or repartition to write the data into target
+2. How would you design the data partitioning strategy for optimizing performance in Spark? 
+  -- Partition is nothing but the logical division of the data.
+  -- In order to optimize the performance in spark, I will be Partitioning the data by the specific columns which mostly used during filter and group by operations
+  -- For example, in created dataframe mostly will be partitioning by drug_openfda_pharm_class_epc, pharm_class_cs columns - so we can easily access the data and performance can be increased if it is partitioned
+3. How would you create a Spark table and store the extracted data in an open-source platform? 
+ --Platform usesd - goole colab studio
+ Method 1: using saveAsTable option we can create a spark table
+  step1: spark.sql("CREATE DATABASE IF NOT EXISTS sparkExamples")
+  step 2: df.write.mode("overwrite").saveAsTable("sparkExamples.spark_table")
+ Method 2: We can use create temporary view or global temporary view using dataframe data
+  step 1: df.createOrReplaceGlobalTempView("table_name") or df.createOrReplaceTempView("table_name")
