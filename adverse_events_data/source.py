@@ -25,16 +25,3 @@ df = spark.read.json(rdd,multiLine=True)
 df.printSchema()
 df.show()
 df.count()
-
-#step 3: Performing some transformation to view data into some structured form
-#Requirement: to extract specific fields related to adverse events
-put("Provide the adverse event Source URL: ")
-  print("Reading Nested JSON File ... ")
-  df = read_json_nested(df)
-  read_nested_json_flag = False
-  for column_name in df.schema.names:
-    if isinstance(df.schema[column_name].dataType, ArrayType):
-      read_nested_json_flag = True
-    elif isinstance(df.schema[column_name].dataType, StructType):
-      read_nested_json_flag = True
- 
