@@ -1,0 +1,17 @@
+
+##Step 1 -- 
+#Spark is written in the Scala programming language and requires the Java Virtual Machine (JVM) to run. Therefore, our first task is to download Java.
+!apt-get install openjdk-8-jdk-headless -qq 
+#Next, we will install Apache Spark 3.0.1 with Hadoop 2.7 from here.
+!wget https://archive.apache.org/dist/spark/spark-3.0.0/spark-3.0.0-bin-hadoop2.7.tgz
+#Now, we just need to unzip that folder.
+!tar -xvzf spark-3.0.0-bin-hadoop2.7.tgz
+#one last thing that we need to install and that is the findspark library. It will locate Spark on the system and import it as a regular library.
+!pip install findspark
+#This will enable us to run Pyspark in the Colab environment.
+import os
+os.environ["JAVA_HOME"] = "/usr/lib/jvm/java-8-openjdk-amd64"
+os.environ["SPARK_HOME"] = "/content/spark-3.0.0-bin-hadoop2.7"
+#We need to locate Spark in the system
+import findspark
+findspark.init()
