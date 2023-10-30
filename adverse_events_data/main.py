@@ -6,6 +6,8 @@ from pyspark.sql.functions import *
 from pyspark.sql.types import *
 import source
 
+#step 3: Performing some transformation to view data into some structured form
+#Requirement: to extract specific fields related to adverse events
 #method to read content of open api file we read
 def read_json_nested(df):
     #Step 1: Defining column as an empty list
@@ -44,7 +46,7 @@ def main():
 						read_nested_json_flag = True
 				elif isinstance(df.schema[column_name].dataType, StructType):
 						read_nested_json_flag = True
-	#Step 4: creating the csv file based on the source data ( open api json)
+#Step 4: creating the csv file based on the source data ( open api json)
 df.coalesce(5).write.format("csv").mode("overwrite").save("/content/drive/MyDrive/Adverse_Events_Data/nonsteroidal_parquet_final")
     
 if __name__ == '__main__':
